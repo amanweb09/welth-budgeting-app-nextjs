@@ -188,7 +188,7 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                 variant={"destructive"}
                                 size={"sm"}>
                                 <Trash className='h-4 w-4 mr-2' />
-                                Selected Selected ({selectedIds.length})
+                                Selected ({selectedIds.length})
                             </Button>
                         </div>
                     }
@@ -212,11 +212,13 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                 <Table>
                     <TableHeader>
                         <TableRow>
+                            {/* checkbox */}
                             <TableHead className='w-[50px]'>
                                 <Checkbox
                                     checked={selectedIds.length === filteredAndSortedTransactions.length && filteredAndSortedTransactions.length > 0}
                                     onCheckedChange={handleSelectAll} />
                             </TableHead>
+                            {/* date */}
                             <TableHead
                                 onClick={() => handleSort("date")}
                                 className='cursor-pointer'>
@@ -233,9 +235,11 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                     }
                                 </div>
                             </TableHead>
+                            {/* description */}
                             <TableHead>
                                 Description
                             </TableHead>
+                            {/* category */}
                             <TableHead
                                 onClick={() => handleSort("category")}
                                 className='cursor-pointer'>
@@ -250,6 +254,7 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                     )
                                 }</div>
                             </TableHead>
+                            {/* amount */}
                             <TableHead
                                 onClick={() => handleSort("amount")}
                                 className='cursor-pointer'>
@@ -264,7 +269,10 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                     )
                                 }</div>
                             </TableHead>
+                            {/* recurring */}
                             <TableHead>Recurring</TableHead>
+                            {/* actions */}
+                            <TableHead>Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -280,14 +288,24 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                 (
                                     filteredAndSortedTransactions.map(t => {
                                         return <TableRow key={t.id}>
+                                            {/* checkbox */}
                                             <TableCell>
                                                 <Checkbox
                                                     checked={selectedIds.includes(t.id)}
                                                     onCheckedChange={() => handleSelect(t.id)} />
                                             </TableCell>
+
+                                            {/* date */}
                                             <TableCell>
                                                 {format(new Date(t.date), "pp")}
                                             </TableCell>
+
+                                            {/* desc */}
+                                            <TableCell>
+                                                <div className='text-muted-foreground text-sm'>{t.description}</div>
+                                            </TableCell>
+
+                                            {/* category */}
                                             <TableCell className='capitalize'>
                                                 <span style={{
                                                     background: categoryColors[t.category]
@@ -296,6 +314,8 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                                     {t.category}
                                                 </span>
                                             </TableCell>
+
+                                            {/* amount */}
                                             <TableCell
                                                 style={{
                                                     color: t.type === "EXPENSE" ? "red" : "green"
@@ -304,6 +324,8 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                                 {t.type === "EXPENSE" ? "-" : "+"}
                                                 &#8377;{t.amount.toFixed(2)}
                                             </TableCell>
+
+                                            {/* recurring */}
                                             <TableCell>
                                                 {
                                                     t.isRecurring
@@ -332,6 +354,8 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                                         </Badge>
                                                 }
                                             </TableCell>
+
+                                            {/* actions */}
                                             <TableCell>
                                                 <DropdownMenu>
                                                     <DropdownMenuTrigger asChild>

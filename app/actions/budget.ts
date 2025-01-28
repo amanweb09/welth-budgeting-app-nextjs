@@ -2,7 +2,6 @@
 
 import { db } from "@/lib/prisma"
 import { auth } from "@clerk/nextjs/server"
-import { endOfMonth } from "date-fns"
 import { revalidatePath } from "next/cache"
 
 export const getCurrentBudget = async (accountId: string) => {

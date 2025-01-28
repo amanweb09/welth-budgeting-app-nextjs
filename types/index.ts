@@ -10,3 +10,22 @@ export interface IAccountDetails {
 export interface IRouteWithParam {
     params: Promise<{ id: string }>
 }
+
+export interface ICategory {
+    id: string,
+    name: string,
+    type: string,
+    color: string,
+    icon: string
+}
+
+
+export interface ITransactionData {
+    type: string,
+    amount: string, description: string,
+    date: Date | undefined,
+    accountId: string,
+    category: string,
+    isRecurring: boolean,
+    recurringInterval: string
+}
