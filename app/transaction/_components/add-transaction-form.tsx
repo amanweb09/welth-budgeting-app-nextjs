@@ -33,7 +33,8 @@ const AddTransactionForm = ({ accounts, categories }: IPropTypes) => {
     const {
         loading: trLoading,
         fn: TrFn,
-        closeDrawer: isSuccessful
+        closeDrawer: isSuccessful,
+        error
     } = useFetch(() => createTransaction(data))
 
     const filteredCategories = categories.filter(c => c.type === data.type)
@@ -44,7 +45,7 @@ const AddTransactionForm = ({ accounts, categories }: IPropTypes) => {
         const validate = validateTransaction(data)
 
         if (!validate.success) {
-            toast.error(validate.error.message[0])
+            toast.error("Please provide valid data")
             return;
         }
 
@@ -59,6 +60,13 @@ const AddTransactionForm = ({ accounts, categories }: IPropTypes) => {
             router.push("/account/"+data.accountId)
         }
     }, [isSuccessful])
+
+    useEffect(() => {
+        if(error) {
+            console.log(error);
+            toast.error(error.message || "Couldn't create transaction")
+        }
+    }, [error])
 
     return (
         <form className="space-y-6">

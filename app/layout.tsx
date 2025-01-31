@@ -25,7 +25,7 @@ export default function RootLayout({
           {/* header */}
           <Header />
 
-          <main className="min-h-screen container mx-auto">
+          <main className="min-h-screen container mx-auto px-2">
             {children}
           </main>
 

@@ -117,7 +117,7 @@ const BudgetProgress = ({ initialBudget, currentExpenses }: IPropTypes) => {
                     <div className='space-y-2'>
                         <Progress
                             style={{
-                                backgroundColor: percentageUsed >= 90
+                                color: percentageUsed >= 90
                                     ? "red"
                                     : percentageUsed >= 75
                                         ? "yellow"

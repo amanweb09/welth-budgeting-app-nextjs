@@ -88,9 +88,32 @@ export const getUserAccounts = async () => {
         }
     })
 
-    const serializedAccounts = accounts.map((a:Account) => serializeData(a))
+    const serializedAccounts = accounts.map((a: Account) => serializeData(a))
 
     return serializedAccounts
+}
+
+export const getDashboardData = async () => {
+    const { userId } = await auth()
+    if (!userId) throw new Error("Unauthorised")
+
+    const user = await db.user.findUnique({
+        where: {
+            clerkUserId: userId
+        }
+    })
+
+    if (!user) {
+        throw new Error("User not found")
+    }
+
+    // transactions irrespective of account
+    const transactions = await db.transaction.findMany({
+        where: { userId: user.id },
+        orderBy: { createdAt: "desc" },
+    })
+
+    return transactions.map((t:any) => serializeData(t))
 }
 
 export default createAccount

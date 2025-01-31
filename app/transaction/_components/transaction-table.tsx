@@ -9,7 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { TooltipContent, TooltipProvider, TooltipTrigger, Tooltip } from '@/components/ui/tooltip';
 import { categoryColors } from '@/data/categories';
 import useFetch from '@/hooks/useFetch';
 import { Transaction } from '@prisma/client'
@@ -297,7 +297,7 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
 
                                             {/* date */}
                                             <TableCell>
-                                                {format(new Date(t.date), "pp")}
+                                                {format(new Date(t.date), "ddMMM")}
                                             </TableCell>
 
                                             {/* desc */}
@@ -332,6 +332,7 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                                         ?
                                                         (
                                                             <TooltipProvider>
+                                                            <Tooltip>
                                                                 <TooltipTrigger>
                                                                     <Badge
                                                                         className='gap-1 bg-purple-100 text-purple-700 hover:bg-purple-200'
@@ -345,6 +346,7 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
                                                                         Recurring Transaction
                                                                     </div>
                                                                 </TooltipContent>
+                                                                </Tooltip>
                                                             </TooltipProvider>
                                                         ) :
                                                         <Badge className='gap-1'

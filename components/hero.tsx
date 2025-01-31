@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useRef } from 'react'
 import { Button } from './ui/button';
 import Image from 'next/image';
+import heroImage from "./img/hero.jpg"
 
 const Hero = () => {
 
@@ -54,7 +55,7 @@ const Hero = () => {
                 <div ref={imageRef} className='hero-image'>
                     <Image
                         className='rounded-lg shadow-2xl border mx-auto'
-                        src={"/images/hero.jpg"}
+                        src={heroImage}
                         width={1280}
                         height={720}
                         alt='Dashboard preview'

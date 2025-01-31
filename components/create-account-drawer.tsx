@@ -25,6 +25,7 @@ const CreateAccountDrawer = ({ children }: { children: React.ReactNode }) => {
         if(closeDrawer) {
             setDetails({ name: "", type: "SAVINGS", balance: "", isDefault: true })
             setOpen(false)
+			toast.success("Account created successfully")
         }
     }, [closeDrawer])
 

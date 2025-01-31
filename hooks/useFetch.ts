@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { toast } from "sonner"
 
 const useFetch = (cb: (...args: any) => any) => {
     const [data, setData] = useState(undefined)
@@ -16,11 +15,9 @@ const useFetch = (cb: (...args: any) => any) => {
             setData(response)
             setError(null)
             setCloseDrawer(true)
-            toast.success("Account created successfully")
         } catch (error: any) {
             console.log(error)
             setError(error)
-            toast.error(error.message)
         } finally {
             setLoading(false)
         }

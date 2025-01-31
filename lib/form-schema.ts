@@ -9,7 +9,7 @@ export const accountSchema = z.object({
 })
 
 export const transactionSchema = z.object({
-    type: z.enum(["CURRENT", "SAVINGS"]),
+    type: z.enum(["EXPENSE", "INCOME"]),
     amount: z.string().min(1, "Amount is required"),
     description: z.string().min(2, "Please provide description"), 
     date: z.date(), 
@@ -24,5 +24,6 @@ export const validateAccount = (data:IAccountDetails) => {
 }
 
 export const validateTransaction = (data:ITransactionData) => {
+console.log(data)
     return transactionSchema.safeParse(data)
 }
