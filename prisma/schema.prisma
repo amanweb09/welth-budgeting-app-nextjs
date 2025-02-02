@@ -1,12 +1,12 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated/client"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
   directUrl = env("DIRECT_URL") //necessary for pushing schemas to supabase
-  output   = "./generated/client"
 }
 
 model User {
