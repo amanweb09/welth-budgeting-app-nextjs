@@ -4,11 +4,10 @@ import { bulkDeleteTransactions } from '@/app/actions/account';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox'
-import { Command } from '@/components/ui/command';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { TooltipContent, TooltipProvider, TooltipTrigger, Tooltip } from '@/components/ui/tooltip';
 import { categoryColors } from '@/data/categories';
 import useFetch from '@/hooks/useFetch';
@@ -81,7 +80,6 @@ const TransactionTable = ({ transactions }: { transactions: Transaction[] }) => 
         loading: deleteLoading,
         error,
         fn: deleteFn,
-        data: deleted,
         closeDrawer: isSuccessful
     } = useFetch(bulkDeleteTransactions)
 

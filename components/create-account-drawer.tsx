@@ -19,19 +19,23 @@ const CreateAccountDrawer = ({ children }: { children: React.ReactNode }) => {
 
     const [details, setDetails] = useState<IAccountDetails>({ name: "", type: "SAVINGS", balance: "", isDefault: true })
 
-    const { data: newAccount, error, fn: createAccountFunction, loading: createAccountLoading, closeDrawer } = useFetch(() => createAccount(details))
+    const {
+        error,
+        fn: createAccountFunction,
+        loading: createAccountLoading,
+        closeDrawer } = useFetch(() => createAccount(details))
 
     useEffect(() => {
-        if(closeDrawer) {
+        if (closeDrawer) {
             setDetails({ name: "", type: "SAVINGS", balance: "", isDefault: true })
             setOpen(false)
-			toast.success("Account created successfully")
+            toast.success("Account created successfully")
         }
     }, [closeDrawer])
 
     useEffect(() => {
-        if(error) {
-            toast.error(error.message || "Failed to create account") 
+        if (error) {
+            toast.error(error.message || "Failed to create account")
         }
     }, [error])
 
@@ -41,15 +45,13 @@ const CreateAccountDrawer = ({ children }: { children: React.ReactNode }) => {
         const validate = validateAccount(details)
 
         if (!validate.success) {
-            console.log(validate)
             alert(validate.error.message[0])
             return;
         }
 
         // make api call
         await createAccountFunction()
-        console.log("created");
-        
+
     }
 
     return (

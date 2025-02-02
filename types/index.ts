@@ -22,10 +22,19 @@ export interface ICategory {
 
 export interface ITransactionData {
     type: string,
-    amount: string, description: string,
+    amount: string,
+    description: string,
     date: Date | undefined,
     accountId: string,
     category: string,
     isRecurring: boolean,
     recurringInterval: string
+}
+
+export interface IAIReciptData {
+    amount: string,
+    description: string,
+    date: Date | undefined,
+    category: string,
+    merchantName: string
 }

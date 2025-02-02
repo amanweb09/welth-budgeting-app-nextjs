@@ -9,7 +9,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import useFetch from "@/hooks/useFetch";
-import { ICategory, ITransactionData } from "@/types";
+import { IAIReciptData, ICategory, ITransactionData } from "@/types";
 import { Account } from "@prisma/client";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 import { toast } from "sonner";
 import { validateTransaction } from "@/lib/form-schema";
+import ReceiptScanner from "./recipt-scanner";
 
 interface IPropTypes {
     accounts: Account[],
@@ -39,38 +40,49 @@ const AddTransactionForm = ({ accounts, categories }: IPropTypes) => {
 
     const filteredCategories = categories.filter(c => c.type === data.type)
 
-    const handleSubmit = async (e:React.MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 
         const validate = validateTransaction(data)
 
         if (!validate.success) {
-            toast.error("Please provide valid data")
+            toast.error("Please provide a valid transaction")
             return;
         }
 
-        const formData = {...data, amount: +data.amount}
+        const formData = { ...data, amount: +data.amount }
 
         TrFn(formData)
     }
 
     useEffect(() => {
-        if(isSuccessful) {
+        if (isSuccessful) {
             toast.success("Transaction added successfully!")
-            router.push("/account/"+data.accountId)
+            router.push("/account/" + data.accountId)
         }
-    }, [isSuccessful])
+    }, [isSuccessful, data.accountId, router])
 
     useEffect(() => {
-        if(error) {
+        if (error) {
             console.log(error);
             toast.error(error.message || "Couldn't create transaction")
         }
     }, [error])
 
+    const onScanComplete = (scannedData: IAIReciptData) => {
+        setData({
+            ...data,
+            amount: JSON.stringify(scannedData.amount),
+            description: scannedData.description ?? data.category,
+            date: scannedData.date instanceof Date ? new Date(scannedData.date) : new Date(),
+            category: scannedData.category ?? data.category,
+        })
+    }
+
     return (
         <form className="space-y-6">
             {/* AI Scanner */}
+            <ReceiptScanner onScanComplete={onScanComplete} />
 
             <div className="space-y-2">
                 <label className="text-sm font-medium">Type</label>
@@ -87,7 +99,7 @@ const AddTransactionForm = ({ accounts, categories }: IPropTypes) => {
                 </Select>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2 pb-4">
                 <div className="space-y-2">
                     <label className="text-sm font-medium">Amount</label>
                     <Input

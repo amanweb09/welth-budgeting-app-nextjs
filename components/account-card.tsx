@@ -15,7 +15,6 @@ const AccountCard = ({ account }: { account: Account }) => {
     const { name, id, isDefault, balance, type } = account
 
     const {
-        data: updatedAccount,
         error,
         fn: updateDefaultFn,
         loading: updateDefaultLoading,

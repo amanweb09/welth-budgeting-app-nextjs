@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Plus } from 'lucide-react'
 import React, { Suspense } from 'react'
 import { getDashboardData, getUserAccounts } from '../actions/dashboard'
-import { Account } from '@prisma/client'
+import { Account, Budget } from '@prisma/client'
 import AccountCard from '@/components/account-card'
 import { getCurrentBudget } from '../actions/budget'
 import BudgetProgress from '@/components/budget-progress'
@@ -14,7 +14,7 @@ const Dashboard = async () => {
   const accounts = await getUserAccounts()
 
   const defaultAccount: Account = accounts?.find((a: Account) => a.isDefault)
-  let budgetData = null;
+  let budgetData: any = null;
 
   if (defaultAccount) {
     budgetData = await getCurrentBudget(defaultAccount.id)

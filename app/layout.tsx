@@ -1,3 +1,4 @@
+import Head from "next/head"
 import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google"
@@ -8,6 +9,7 @@ import { Toaster } from "@/components/ui/sonner";
 export const metadata: Metadata = {
   title: "Welth - Your Wealth Manager",
   description: "wealth management platform",
+  icons: "/favicon.png"
 };
 
 // importing custom font
@@ -21,6 +23,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+      <Head>
+      <link rel="icon" href="/favicon.png"/>
+      </Head>
         <body className={inter.className}>
           {/* header */}
           <Header />

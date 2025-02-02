@@ -4,7 +4,7 @@ import { BarLoader } from "react-spinners"
 
 const DashboardLayout = () => {
     return (
-        <div className='px-5 pt-20'>
+        <div className='px-5 pt-20 pb-4'>
             <h1 className='text-6xl font-semibold gradient-title mb-5'>Dashboard</h1>
 
             {/* if we are making an API call, this component will be in loading state */}

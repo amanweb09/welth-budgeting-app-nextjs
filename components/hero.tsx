@@ -4,7 +4,6 @@ import Link from 'next/link';
 import React, { useEffect, useRef } from 'react'
 import { Button } from './ui/button';
 import Image from 'next/image';
-import heroImage from "./img/hero.jpg"
 
 const Hero = () => {
 
@@ -13,7 +12,7 @@ const Hero = () => {
     useEffect(() => {
         const imageElement = imageRef.current
 
-        const handleScroll = (e:Event) => {
+        const handleScroll = () => {
             const scrollPosition = window.scrollY
             const scrollThreshold = 100
 
@@ -55,11 +54,10 @@ const Hero = () => {
                 <div ref={imageRef} className='hero-image'>
                     <Image
                         className='rounded-lg shadow-2xl border mx-auto'
-                        src={heroImage}
+                        src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1611&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         width={1280}
                         height={720}
-                        alt='Dashboard preview'
-                        priority />
+                        alt='Dashboard preview'/>
                 </div>
             </div>
         </div>

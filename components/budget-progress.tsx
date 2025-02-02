@@ -24,7 +24,6 @@ const BudgetProgress = ({ initialBudget, currentExpenses }: IPropTypes) => {
     const {
         loading: isLoading,
         fn: updateBudgetFn,
-        data: updatedBudget,
         error,
         closeDrawer: isSuccessful
     } = useFetch(updateBudget)
