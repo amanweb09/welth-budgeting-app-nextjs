@@ -1,6 +1,6 @@
 "use client";
 
-import { Account } from '@prisma/client'
+import { Account } from "@/prisma/generated/client";
 import React, { useEffect } from 'react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
 import { Switch } from './ui/switch'

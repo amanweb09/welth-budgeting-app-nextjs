@@ -3,7 +3,7 @@
 import { db } from "@/lib/prisma"
 import serializeData from "@/lib/serializer";
 import { auth } from "@clerk/nextjs/server"
-import { Transaction } from "@/types/prisma";
+import { Transaction } from "@/prisma/generated/client";
 import { revalidatePath } from "next/cache"
 
 

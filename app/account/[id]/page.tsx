@@ -1,6 +1,5 @@
 import { getAccountWithTransactions } from '@/app/actions/account'
 import TransactionTable from '@/app/transaction/_components/transaction-table'
-// import AccountChart from '@/components/account-chart'
 import { IRouteWithParam } from '@/types'
 import { notFound } from 'next/navigation'
 import React, { Suspense } from 'react'

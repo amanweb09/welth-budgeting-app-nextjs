@@ -1,6 +1,6 @@
 "use client";
 
-import { Account, Transaction } from '@prisma/client'
+import { Transaction, Account } from "@/prisma/generated/client";
 import React, { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';

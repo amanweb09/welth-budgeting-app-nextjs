@@ -3,7 +3,7 @@
 import { db } from "@/lib/prisma"
 import serializeData from "@/lib/serializer"
 import { auth } from "@clerk/nextjs/server"
-import { Account } from "@prisma/client"
+import { Account } from "@/prisma/generated/client";
 import { revalidatePath } from "next/cache"
 
 const createAccount = async (data: any) => {

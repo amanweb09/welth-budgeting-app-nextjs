@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import useFetch from "@/hooks/useFetch";
 import { IAIReciptData, ICategory, ITransactionData } from "@/types";
-import { Account } from "@prisma/client";
+import { Account } from "@/prisma/generated/client";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";

@@ -11,7 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { TooltipContent, TooltipProvider, TooltipTrigger, Tooltip } from '@/components/ui/tooltip';
 import { categoryColors } from '@/data/categories';
 import useFetch from '@/hooks/useFetch';
-import { Transaction } from '@prisma/client'
+import { Transaction } from "@/prisma/generated/client";
 import { format } from 'date-fns';
 import { ChevronDown, ChevronUp, Clock, MoreHorizontal, RefreshCw, Search, Trash, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
